@@ -1,0 +1,11 @@
+#!/usr/bin/python3
+import asyncio
+from typing import List
+wait_random = __import__('0-wait_random').wait_random
+
+async def wait_n(n: int, max_delay: int) -> List[float]:
+    delays = []
+
+    for task in asyncio.as_completed([wait_random(max_delay) for _ in range(n)]):
+        delay = await task
+        delays.append(delay)
