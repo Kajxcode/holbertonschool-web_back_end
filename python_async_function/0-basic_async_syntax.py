@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
+"""this module defines a function"""
 import asyncio
 import random
-"""this module defines a function"""
 
 
 async def wait_random(max_delay: int = 10) -> float:
