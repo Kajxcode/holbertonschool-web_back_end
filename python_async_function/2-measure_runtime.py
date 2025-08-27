@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""this module defines a function"""
 import time
 import asyncio
 wait_n = __import__('1-concurrent_coroutines.py').wait_n
