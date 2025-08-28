@@ -13,6 +13,7 @@ class Server:
     def __init__(self):
         self.__dataset = None
 
+
     def dataset(self) -> List[List]:
         """Cached dataset
         """
@@ -24,24 +25,27 @@ class Server:
 
         return self.__dataset
 
+
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-     """returns needed page"""
-     assert isinstance(page, int) and page > 0
-     assert isinstance(page_size, int) and page_size > 0
+        """returns needed page"""
+        assert isinstance(page, int) and page > 0
+        assert isinstance(page_size, int) and page_size > 0
 
-     start, end = index_range(page, page_size)
+        start, end = index_range(page, page_size)
 
-     dataset = self.dataset()
+        dataset = self.dataset()
 
-     if start >= len(dataset):
-          return []
-     return dataset[start:end]
+        if start >= len(dataset):
+            return []
+        return dataset[start:end]
+
 
 def index_range(page: int, page_size: int) -> tuple[int, int]:
     """this is a function"""
     start = (page - 1) * page_size
     end = page * page_size
     return (start, end)
+
 
 def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
     data_page = self.get_page(page, page_size)
