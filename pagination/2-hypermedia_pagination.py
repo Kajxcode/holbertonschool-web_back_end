@@ -24,7 +24,6 @@ class Server:
 
         return self.__dataset
 
-
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """returns needed page"""
         assert isinstance(page, int) and page > 0
@@ -37,7 +36,6 @@ class Server:
         if start >= len(dataset):
             return []
         return dataset[start:end]
-
 
 def index_range(page: int, page_size: int) -> tuple[int, int]:
     """this is a function"""
