@@ -53,8 +53,8 @@ class Server:
         next_index = end if end < total_items else None
 
         return {
-        "index": start,
-        "next_index": next_index,
-        "page_size": len(page_data),
-        "data": page_data
-    }
+            "index": start,
+            "next_index": next_index,
+            "page_size": len(page_data),
+            "data": page_data
+        }
