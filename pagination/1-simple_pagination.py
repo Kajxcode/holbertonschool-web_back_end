@@ -13,7 +13,6 @@ class Server:
     def __init__(self):
         self.__dataset = None
 
-
     def dataset(self) -> List[List]:
         """Cached dataset"""
         if self.__dataset is None:
@@ -23,7 +22,6 @@ class Server:
             self.__dataset = dataset[1:]
 
         return self.__dataset
-
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """returns needed page"""
