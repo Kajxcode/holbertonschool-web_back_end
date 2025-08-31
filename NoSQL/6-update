@@ -1,0 +1,6 @@
+// my comment
+
+db.school.update(
+    {name: "Holberton school"},
+    {$set: { location: "Australia"}}
+)
