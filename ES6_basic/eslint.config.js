@@ -1,40 +1,59 @@
-export default {
-  extends: [
-    'airbnb-base',
-    'plugin:jest/all',
-  ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+import base from 'eslint-config-airbnb-base';
+import jestPlugin from 'eslint-plugin-jest';
+
+export default [
+
+  {
+    files: ['**/*.js'],
+    ...base,
   },
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-    globalThis: 'readonly',
-    process: 'readonly',
-    Buffer: 'readonly',
-    describe: 'readonly',
-    test: 'readonly',
-    expect: 'readonly',
-    beforeAll: 'readonly',
-    afterAll: 'readonly',
-    beforeEach: 'readonly',
-    afterEach: 'readonly',
-  },
-  plugins: ['jest'],
-  rules: {
-    'no-console': 'off',
-    'no-shadow': 'off',
-    'no-restricted-syntax': [
-      'error',
-      'LabeledStatement',
-      'WithStatement',
-    ],
-  },
-  overrides: [
-    {
-      files: ['*.js'],
-      excludedFiles: 'babel.config.js',
+
+
+  {
+    files: ['**/*.test.js', '**/__tests__/**/*.js'],
+    languageOptions: {
+      globals: {
+        describe: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+      },
     },
-  ],
-};
+    plugins: {
+      jest: jestPlugin,
+    },
+    rules: {
+      ...jestPlugin.configs.recommended.rules,
+      ...jestPlugin.configs.all.rules,
+    },
+  },
+
+  {
+    files: ['**/*.js'],
+    rules: {
+      'no-console': 'off',
+      'no-shadow': 'off',
+      'no-restricted-syntax': [
+        'error',
+        'LabeledStatement',
+        'WithStatement',
+      ],
+    },
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+      globals: {
+        Atomics: 'readonly',
+        SharedArrayBuffer: 'readonly',
+        globalThis: 'readonly',
+        process: 'readonly',
+        Buffer: 'readonly',
+      },
+    },
+  },
+];
