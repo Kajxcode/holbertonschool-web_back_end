@@ -1,18 +1,20 @@
-import base from 'eslint-config-airbnb-base';
 import jestPlugin from 'eslint-plugin-jest';
 
 export default [
-
   {
     files: ['**/*.js'],
-    ...base,
-  },
-
-
-  {
-    files: ['**/*.test.js', '**/__tests__/**/*.js'],
     languageOptions: {
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
       globals: {
+        Atomics: 'readonly',
+        SharedArrayBuffer: 'readonly',
+        globalThis: 'readonly',
+        process: 'readonly',
+        Buffer: 'readonly',
+        // Jest globals
         describe: 'readonly',
         test: 'readonly',
         expect: 'readonly',
@@ -26,14 +28,6 @@ export default [
       jest: jestPlugin,
     },
     rules: {
-      ...jestPlugin.configs.recommended.rules,
-      ...jestPlugin.configs.all.rules,
-    },
-  },
-
-  {
-    files: ['**/*.js'],
-    rules: {
       'no-console': 'off',
       'no-shadow': 'off',
       'no-restricted-syntax': [
@@ -41,19 +35,8 @@ export default [
         'LabeledStatement',
         'WithStatement',
       ],
-    },
-    languageOptions: {
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
-      globals: {
-        Atomics: 'readonly',
-        SharedArrayBuffer: 'readonly',
-        globalThis: 'readonly',
-        process: 'readonly',
-        Buffer: 'readonly',
-      },
+      ...jestPlugin.configs.recommended.rules,
+      ...jestPlugin.configs.all.rules,
     },
   },
 ];
