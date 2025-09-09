@@ -24,3 +24,18 @@ export default class Building {
     throw new Error("Subclasses must implement evacuationWarningMessage()");
   }
 }
+
+class School extends Building {
+  constructor(sqft) {
+    super(sqft);
+  }
+
+  evacuationWarningMessage() {
+    return `Attention! Evacuate the building immediately!`;
+  }
+}
+
+const mySchool = new School(5000);
+console.log(mySchool.sqft);                       // 5000
+console.log(mySchool.evacuationWarningMessage()); // "Attention! Evacuate the building immediately!"
+
