@@ -1,7 +1,3 @@
 export default async function uploadPhoto(filename) {
-    try {
-        console.log(filename);
-    } catch {
-        throw Error(`${filename} cannot be processed`)
-    }
+  throw new Error(`${filename} cannot be processed`);
 }
