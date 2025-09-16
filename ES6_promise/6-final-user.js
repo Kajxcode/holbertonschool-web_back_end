@@ -6,11 +6,8 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
         uploadPhoto(fileName)
     ]);
 
-    return results.map(res => {
-        if (res.status === 'fulfilled') {
-            return { status: res.status, value: res.value};
-        } else {
-            return {status: res.status, value: res.reason };
-        }
-    })
+    return results.map(res => ({
+        status: res.status,
+        value: res.status === 'fulfilled' ? res.value : res.reason.toString()
+    }));
 }
