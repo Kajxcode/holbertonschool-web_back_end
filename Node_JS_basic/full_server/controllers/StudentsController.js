@@ -1,10 +1,11 @@
+const path = require('path');
 const readDatabase = require('../utils');
 
-const path = process.argv[2];
+const dbPath = path.join(__dirname, '../database.csv'); // absolute path to database.csv
 
 class StudentsController {
   static getAllStudents(request, response) {
-    readDatabase(path)
+    readDatabase(dbPath)
       .then((data) => {
         let responseString = 'This is the list of our students<br/>';
         for (const [field, names] of Object.entries(data)) {
@@ -17,8 +18,10 @@ class StudentsController {
 
   static getAllStudentsByMajor(request, response) {
     const { major } = request.params;
-    if (major !== 'CS' && major !== 'SWE') response.status(500).send('Major parameter must be CS or SWE');
-    readDatabase(path)
+    if (major !== 'CS' && major !== 'SWE') {
+      return response.status(500).send('Major parameter must be CS or SWE');
+    }
+    readDatabase(dbPath)
       .then((data) => {
         response.status(200).send(`List: ${data[major].join(', ')}`);
       })
