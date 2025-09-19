@@ -1,3 +1,4 @@
+#!/usr/bin/node
 // import a module needed to work with files
 const fs = require('fs').promises;
 
