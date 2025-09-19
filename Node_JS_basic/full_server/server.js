@@ -1,5 +1,5 @@
 import express from 'express';
-import router from './routes/index.js';
+import router from './routes/index'; // remove .js to satisfy ESLint
 
 const app = express();
 const port = 1245;

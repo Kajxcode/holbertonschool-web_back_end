@@ -1,4 +1,4 @@
-import { readDatabase } from '../utils.js';
+import { readDatabase } from '../utils'; // remove .js to satisfy ESLint
 
 class StudentsController {
   static getAllStudents(req, res) {
@@ -21,13 +21,15 @@ class StudentsController {
 
     if (major !== 'CS' && major !== 'SWE') {
       res.status(500).send('Major parameter must be CS or SWE');
-      return;
+      return; // no return value, just exit
     }
 
-    return readDatabase(databaseFile).then((students) => {
-      const list = students[major] ? students[major].join(', ') : '';
-      res.status(200).send(`List: ${list}`);
-    }).catch(() => res.status(500).send('Cannot load the database'));
+    readDatabase(databaseFile)
+      .then((students) => {
+        const list = students[major] ? students[major].join(', ') : '';
+        res.status(200).send(`List: ${list}`);
+      })
+      .catch(() => res.status(500).send('Cannot load the database'));
   }
 }
 
