@@ -16,7 +16,7 @@ function countStudents(path) {
 
         console.log(`Number of students: ${students.length}`);
 
-        const fields {};
+        const fields = {};
 
         for (const line of students) {
             const parts = line.split(',');
